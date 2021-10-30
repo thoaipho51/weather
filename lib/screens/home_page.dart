@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(color: Colors.black38),
           ),
           Container(
-            margin: EdgeInsets.only(top: 100, left: 15),
+            margin: EdgeInsets.only(top: 110, left: 15),
             child: Row(
               children: [
                 for(int i=0; i<locationList.length; i++)

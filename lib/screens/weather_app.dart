@@ -13,7 +13,25 @@ class WeatherApp extends StatefulWidget {
 }
   
 class _WeatherAppState extends State<WeatherApp> {
+
   int _selectedIndex = 0;
+
+  final tabs = [
+    Container(
+      child: HomePage(),
+    ),
+    Container(
+      child: Container(
+        color: Colors.red
+      ),
+    ),
+    Container(
+      child: Container(
+          color: Colors.teal
+      ),
+    )
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +41,21 @@ class _WeatherAppState extends State<WeatherApp> {
         title: Text(''),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.search,
-            size: 30,
-            color: Colors.white,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(
+        //     Icons.search,
+        //     size: 30,
+        //     color: Colors.white,
+        //   ),
+        // ),
         actions: [
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
             child: GestureDetector(
-              onTap: () => print('Menu clicked!'),
+              onTap: () => print('Search Clicked'),
               child: SvgPicture.asset(
-                'assets/menu.svg',
+                'assets/Search.svg',
                 height: 30,
                 width: 30,
                 color: Colors.white,
@@ -46,18 +64,18 @@ class _WeatherAppState extends State<WeatherApp> {
           )
         ],
       ),
-      body: getBody( ) ,
+      body: tabs[_selectedIndex] ,
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
+        fixedColor: Colors.red,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
-        selectedIconTheme: IconThemeData(
-          color: Colors.red,
-          size: 30,
-        ),
-        onTap: (int index){
-          onTapHandler(index);
+        iconSize: 25,
+        //selectedIconTheme: IconThemeData(color: Colors.red, size: 30,),
+        onTap: (index){
+          setState(() {
+            _selectedIndex = index;
+          });
         },
-        backgroundColor: Colors.transparent,
         items: [
             BottomNavigationBarItem(
               icon:Icon(Icons.home),
@@ -71,29 +89,41 @@ class _WeatherAppState extends State<WeatherApp> {
               icon:Icon(Icons.search),
               title:Text('Search'),
             ),
-
         ],
+      ),
+      drawer: Drawer(
+
+        child: SafeArea(
+          child: Container(
+            color: Colors.white70,
+            child: Column(
+              children: [
+                ListTile(
+                  hoverColor: Colors.red,
+                  leading: Icon(Icons.build),
+                  title: Text('Setting', style: TextStyle(fontSize:20)),
+                  onTap: (){
+                    print("Tapped Setting");
+                  }
+                ),
+                ListTile(
+                    leading: Icon(Icons.email),
+                    title: Text('Email'),
+                    onTap: (){
+                      print("Tapped Email");
+                    }
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
-  Widget getBody( )  {
-    if(this._selectedIndex == 0) {
-      return HomePage();
-    } else if(this._selectedIndex==1) {
-      return Container(
-        color: Colors.blue
-      );
-    } else {
-      return Container(
-        color: Colors.red,
-      );
-    }
-  }
-  void onTapHandler( int index) {
-    this.setState(() {
-      this._selectedIndex = index;
-    });
-  }
+
+
+
+
 }
 
 

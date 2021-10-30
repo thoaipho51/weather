@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class WeatherLocation {
   final String city;
   final String dateTime;
@@ -24,7 +25,7 @@ class WeatherLocation {
 
 final locationList = [
   WeatherLocation(
-      city: 'Ha Noi',
+      city: "TP.Hồ Chí Minh",
       dateTime: '08:00 PM - Friday, 22 Oct 2021',
       temperature: '16\u2103',
       weatherType: 'Night',
@@ -60,3 +61,4 @@ final locationList = [
       rain: 13,
       humidity: 26),
 ];
+
