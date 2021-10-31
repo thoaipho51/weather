@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_camau/screens/sidebar_pages/sidebar_messenger_page.dart';
 
 import 'new_row.dart';
 
@@ -53,7 +54,9 @@ class _SideBarState extends State<SideBar> {
                 icon: Icons.message,
                 sizeFont: 22,
                   onTap: (){
-
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) =>MessengerPage()
+                      ));
                   },
               ),
               SizedBox(height: 20,),
@@ -98,7 +101,7 @@ class _SideBarState extends State<SideBar> {
                 icon: Icons.settings,
                 sizeFont: 22,
                 onTap: (){
-
+                    print("Setting");
                 },
               ),
             ],
@@ -107,10 +110,15 @@ class _SideBarState extends State<SideBar> {
             children: [
               Icon(Icons.cancel, color: Colors.white.withOpacity(0.5)),
               SizedBox(width: 10,),
-              Text('Logout', style: TextStyle(
-                fontSize: 22,
-                color: Colors.white,
-              ))
+              GestureDetector(
+                onTap: (){
+                  print("Đã Đăng Xuất");
+                },
+                child: Text('Logout', style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                )),
+              )
             ],
           )
         ],

@@ -17,6 +17,7 @@ class WeatherApp extends StatefulWidget {
   
 class _WeatherAppState extends State<WeatherApp> {
 
+  //Tham số Animation
   double xOffset =0;
   double yOffset =0;
   bool isDrawerOpen = false;
@@ -108,8 +109,8 @@ class _WeatherAppState extends State<WeatherApp> {
     return AnimatedContainer(
         duration: Duration(milliseconds: 200),
     transform: Matrix4.translationValues(xOffset, yOffset, 0)
-    ..scale(isDrawerOpen ? 0.90 : 1.00)
-    ..rotateZ(isDrawerOpen ? pi/20 : 0),
+    ..scale(isDrawerOpen ? 0.90 : 1.00),
+    //..rotateZ(isDrawerOpen ? pi/20 : 0),
     decoration: BoxDecoration(
     color: Colors.white,
     borderRadius:  isDrawerOpen ? BorderRadius.circular(40) : BorderRadius.circular(0),

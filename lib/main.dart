@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather_camau/screens/weather_app.dart';
-import 'package:flutter_weather_camau/widgets/homepage_animation.dart';
 import 'package:flutter_weather_camau/widgets/sidebar.dart';
 void main() {
   runApp(const MyApp());
