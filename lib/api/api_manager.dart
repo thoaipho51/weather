@@ -5,9 +5,6 @@ import 'package:flutter_weather_camau/models/weather_api.dart';
 import 'package:http/http.dart' as http;
 
 
-
-
-
 class API_Manager {
 
   Future<Weather> getWeather() async {
