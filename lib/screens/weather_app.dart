@@ -115,86 +115,103 @@ class _WeatherAppState extends State<WeatherApp> {
     color: Colors.white,
     borderRadius:  isDrawerOpen ? BorderRadius.circular(40) : BorderRadius.circular(0),
     ),
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(''),
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              if(isDrawerOpen){
-                setState(() {
-                  xOffset =0;
-                  yOffset = 0;
-                  isDrawerOpen = false;
-                });
-              }else{
-                setState(() {
-                  xOffset = _size.width -120;
-                  yOffset = _size.height/5;
-                  isDrawerOpen = true;
-                });
-              }
-            },
-            icon: Icon(
-              Icons.menu,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-          actions: [
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
-              child: GestureDetector(
-                onTap: () => print('Search Clicked'),
-                child: SvgPicture.asset(
-                  'assets/Search.svg',
-                  height: 30,
-                  width: 30,
+      child: MaterialApp(
+        home: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              title: Text(''),
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                onPressed: () {
+                  if(isDrawerOpen){
+                    setState(() {
+                      xOffset =0;
+                      yOffset = 0;
+                      isDrawerOpen = false;
+                    });
+                  }else{
+                    setState(() {
+                      xOffset = _size.width -120;
+                      yOffset = _size.height/5;
+                      isDrawerOpen = true;
+                    });
+                  }
+                },
+                icon: Icon(
+                  Icons.menu,
+                  size: 30,
                   color: Colors.white,
                 ),
               ),
+              actions: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: GestureDetector(
+                    onTap: () => print('Search Clicked'),
+                    child: SvgPicture.asset(
+                      'assets/Search.svg',
+                      height: 30,
+                      width: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Icon(Icons.wb_sunny_rounded)),
+                  Tab(icon: Icon(Icons.volunteer_activism)),
+                  Tab(icon: Icon(Icons.map)),
+
+                ],
+
+              ),
+
+            ),
+            body: TabBarView(
+              children: [
+                HomePage(),
+                Container(color: Colors.blue),
+                Container(color: Colors.red)
+              ],
             )
-          ],
-        ),
-        body: tabs[_selectedIndex] ,
-        bottomNavigationBar: BottomNavigationBar(
-          fixedColor: Colors.red,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          iconSize: 25,
-          //selectedIconTheme: IconThemeData(color: Colors.red, size: 30,),
-          onTap: (index){
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon:Icon(Icons.home),
-              title:Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon:Icon(Icons.description),
-              title:Text('Description'),
-            ),
-            BottomNavigationBarItem(
-              icon:Icon(Icons.search),
-              title:Text('Search'),
-            ),
-          ],
-        ),
+            // bottomNavigationBar: BottomNavigationBar(
+            //   fixedColor: Colors.red,
+            //   type: BottomNavigationBarType.fixed,
+            //   currentIndex: _selectedIndex,
+            //   iconSize: 25,
+            //   //selectedIconTheme: IconThemeData(color: Colors.red, size: 30,),
+            //   onTap: (index){
+            //     setState(() {
+            //       _selectedIndex = index;
+            //     });
+            //   },
+            //   items: [
+            //     BottomNavigationBarItem(
+            //       icon:Icon(Icons.home),
+            //       title:Text('Home'),
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon:Icon(Icons.description),
+            //       title:Text('Description'),
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon:Icon(Icons.search),
+            //       title:Text('Search'),
+            //     ),
+            //   ],
+            // ),
+          ),
+
+        )
+
       ),
     );
 
-
-
-
   }
-
-
-
 
 }
 

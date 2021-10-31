@@ -50,7 +50,7 @@ class _SingleWeatherState extends State<SingleWeather> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 100,
+                                height: 130,
                               ),
                               Text(
                                 snapshot.data!.data.city,
