@@ -23,6 +23,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     if(locationList[_currentPage].weatherType == 'Sunny'){
       bgImg = 'assets/sunny.jpg';
     }else if(locationList[_currentPage].weatherType == 'Night'){

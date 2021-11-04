@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_weather_camau/models/weather_locations.dart';
 import 'package:flutter_weather_camau/screens/home_page.dart';
+import 'package:flutter_weather_camau/screens/tabbar_views/air_home.dart';
+import 'package:flutter_weather_camau/screens/tabbar_views/figma_weather.dart';
 import 'package:flutter_weather_camau/widgets/sidebar.dart';
 import 'package:flutter_weather_camau/widgets/single_weather.dart';
 import 'package:flutter_weather_camau/widgets/slider_dot.dart';
+
+import 'search_weather.dart';
 
 class WeatherApp extends StatefulWidget {
   const WeatherApp({Key? key}) : super(key: key);
@@ -44,39 +48,6 @@ class _WeatherAppState extends State<WeatherApp> {
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    //Đừng động comment này
-    // return Scaffold(
-    //   extendBodyBehindAppBar: true,
-    //   appBar: AppBar(
-    //     title: Text(''),
-    //     elevation: 0,
-    //     backgroundColor: Colors.transparent,
-    //     leading: IconButton(
-    //       onPressed: () {
-    //         print("Clicked Menu");
-    //       },
-    //       icon: Icon(
-    //         Icons.menu,
-    //         size: 30,
-    //         color: Colors.white,
-    //       ),
-    //     ),
-    //     actions: [
-    //       Container(
-    //         margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
-    //         child: GestureDetector(
-    //           onTap: () => print('Search Clicked'),
-    //           child: SvgPicture.asset(
-    //             'assets/Search.svg',
-    //             height: 30,
-    //             width: 30,
-    //             color: Colors.white,
-    //           ),
-    //         ),
-    //       )
-    //     ],
-    //   ),
-    //   body: tabs[_selectedIndex] ,
     //   bottomNavigationBar: BottomNavigationBar(
     //     fixedColor: Colors.red,
     //     type: BottomNavigationBarType.fixed,
@@ -117,7 +88,7 @@ class _WeatherAppState extends State<WeatherApp> {
     ),
       child: MaterialApp(
         home: DefaultTabController(
-          length: 3,
+          length: 2,
           child: Scaffold(
             extendBodyBehindAppBar: true,
             appBar: AppBar(
@@ -150,7 +121,13 @@ class _WeatherAppState extends State<WeatherApp> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
                   child: GestureDetector(
-                    onTap: () => print('Search Clicked'),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) =>AirScreen()
+                      ));
+                     // Navigator.push(context,MaterialPageRoute search_weather)
+                      //AirScreen()
+                    },
                     child: SvgPicture.asset(
                       'assets/Search.svg',
                       height: 30,
@@ -163,7 +140,6 @@ class _WeatherAppState extends State<WeatherApp> {
               bottom: TabBar(
                 tabs: [
                   Tab(icon: Icon(Icons.wb_sunny_rounded)),
-                  Tab(icon: Icon(Icons.volunteer_activism)),
                   Tab(icon: Icon(Icons.map)),
 
                 ],
@@ -174,43 +150,13 @@ class _WeatherAppState extends State<WeatherApp> {
             body: TabBarView(
               children: [
                 HomePage(),
-                Container(color: Colors.blue),
-                Container(color: Colors.red)
+                FigmaWeather()
               ],
-            )
-            // bottomNavigationBar: BottomNavigationBar(
-            //   fixedColor: Colors.red,
-            //   type: BottomNavigationBarType.fixed,
-            //   currentIndex: _selectedIndex,
-            //   iconSize: 25,
-            //   //selectedIconTheme: IconThemeData(color: Colors.red, size: 30,),
-            //   onTap: (index){
-            //     setState(() {
-            //       _selectedIndex = index;
-            //     });
-            //   },
-            //   items: [
-            //     BottomNavigationBarItem(
-            //       icon:Icon(Icons.home),
-            //       title:Text('Home'),
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon:Icon(Icons.description),
-            //       title:Text('Description'),
-            //     ),
-            //     BottomNavigationBarItem(
-            //       icon:Icon(Icons.search),
-            //       title:Text('Search'),
-            //     ),
-            //   ],
-            // ),
+            ),
           ),
-
         )
-
       ),
     );
-
   }
 
 }
